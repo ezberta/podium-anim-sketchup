@@ -17,19 +17,19 @@ It goes through your entire animation frame by frame at 24fps and calls Podium o
 ## How to setup it up
 There are a lot of things you have to get exactly right for this to even have a chance of working for you:
 
-Do not try to use on anything with more than 99999 frames; 1.15 hours.
-If you want to limit running/rerunning to only a subset of scenes, I recommend you make a copy of your Sketchup design and delete the scenes you don't want before running this. There is no native subset support in this extension.
-Make sure Podium is in "png" image write type in Podium setup.
-Note/create/set Podium file write directory in Podium setup.
-Make sure that location has no existing podan_*.png files.
-Go to Extensions -> "Run/Cancel Podan".
+Do not try to use on anything with more than 99999 frames; 1.15 hours.  
+If you want to limit running/rerunning to only a subset of scenes, I recommend you make a copy of your Sketchup design and delete the scenes you don't want before running this. There is no native subset support in this extension.  
+Make sure Podium is in "png" image write type in Podium setup.  
+Note/create/set Podium file write directory in Podium setup.  
+Make sure that location has no existing podan_*.png files.  
+Go to Extensions -> "Run/Cancel Podan".  
 Make sure you got the same Podium file write directory location in the Extension GUI. You must specify the full Windows path, something like:
 ```
 C:\Users\JohnDoe\Desktop\podan_renderings
 ```
-Expect a minute delay before anything happens.
-Do not try to run other Podium jobs while this is running.
-Do not try to work in Sketchup while this is running.
+Expect a minute delay before anything happens.  
+Do not try to run other Podium jobs while this is running.  
+Do not try to work in Sketchup while this is running.  
 To CANCEL a current run, go to Extensions -> "Run/Cancel Podan" again and it will prompt you to cancel the current run. WAIT at least 2 minutes for it to really cancel already scheduled internal tasks. In Podium, cancel any current rendering operations. Remember to erase any existing podan_*.png files before rerunning.
 
 ## Post processing

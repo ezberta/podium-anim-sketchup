@@ -12,7 +12,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 ## What does this Extension try to do?
-It goes through your entire animation frame by frame at 24fps and calls Podium on each animating frame. It has some smarts to just copy previous frames if the scene is not yet animating to another scene. It tries to avoid known issues by attempting to monitor when Podium is done and only allowing one run at a time. So it is slow.
+It goes through your entire animation frame by frame at 24fps and calls Podium on each animating frame. It has some smarts to just copy previous frames if the scene is not yet animating to another scene or has the same camera parameters. It tries to avoid known issues by attempting to monitor when Podium is done and only allowing one run at a time. So it is slow.
 
 ## How to setup it up
 There are a lot of things you have to get exactly right for this to even have a chance of working for you:

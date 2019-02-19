@@ -9,7 +9,68 @@ module CommunityExtensions
     class PodanC
 
       @@podan = nil
-         
+
+      def sameCamera(cam1, cam2)
+
+        if cam1.nil? or cam2.nil?
+          return false
+        end
+        
+        if not (cam1.aspect_ratio == cam2.aspect_ratio)
+          return false
+        end
+        if not (cam1.center_2d == cam2.center_2d)
+          return false
+        end
+        if not (cam1.direction == cam2.direction)
+          return false
+        end
+        if not (cam1.eye == cam2.eye)
+          return false
+        end
+        if not (cam1.focal_length == cam2.focal_length)
+          return false
+        end
+        if not (cam1.fov == cam2.fov)
+          return false
+        end
+        if not (cam1.fov_is_height? == cam2.fov_is_height?)
+          return false
+        end
+        if not (cam1.height == cam2.height)
+          return false
+        end
+        if not (cam1.image_width == cam2.image_width)
+          return false
+        end
+        if not (cam1.is_2d? == cam2.is_2d?)
+          return false
+        end
+        if not (cam1.perspective? == cam2.perspective?)
+          return false
+        end
+        if not (cam1.scale_2d == cam2.scale_2d)
+          return false
+        end
+        if not (cam1.target == cam2.target)
+          return false
+        end
+        if not (cam1.up == cam2.up)
+          return false
+        end
+        if not (cam1.xaxis == cam2.xaxis)
+          return false
+        end
+        if not (cam1.yaxis == cam2.yaxis)
+          return false
+        end
+        if not (cam1.zaxis == cam2.zaxis)
+          return false
+        end
+        
+        return true
+      end
+      
       def forceCancel()
         @max_t = -1
       end
@@ -33,7 +94,8 @@ module CommunityExtensions
 
         @forceCancel = 0
         @zeroHandled = false
-
+        @zeroCam = nil
+        
         @done = false
         
       end
@@ -65,6 +127,7 @@ module CommunityExtensions
 
         if not @zeroHandled and (ratio == 0.0)
           @zeroHandled = true
+          @zeroCam = @pages.selected_page.camera
           if @max_t == -1
             print("EZB force DONE\n")
             @@podan = nil
@@ -90,6 +153,13 @@ module CommunityExtensions
             print("EZB force DONE\n")
             @@podan = nil
             @done = true
+            return
+          end
+
+          if self.sameCamera(@pages.selected_page.camera, @zeroCam)
+            UI.start_timer(0, false) {
+              self.copy_view()
+            }
             return
           end
           

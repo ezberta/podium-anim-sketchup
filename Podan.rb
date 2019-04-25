@@ -14,7 +14,7 @@ module CommunityExtensions
       ex.description = 'Podium Animations Helper ' <<
                        'See https://github.com/ezberta/podium-anim-sketchup' <<
                        ' for WARNINGS and usage instructions.'
-      ex.version     = '0.0.1'
+      ex.version     = '0.0.2'
       ex.copyright   = '2019 Eugene Berta, ' <<
                        'released under the MIT License'
       ex.creator     = 'Eugene Berta'

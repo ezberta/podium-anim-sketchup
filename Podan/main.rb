@@ -77,7 +77,7 @@ module CommunityExtensions
 
       attr_reader :done
       
-      def initialize(pod_dir)
+      def initialize(pod_dir, start_frame)
         @mod = Sketchup.active_model # Open model
         
         @pages = @mod.pages
@@ -97,6 +97,11 @@ module CommunityExtensions
         @zeroCam = nil
         
         @done = false
+
+        if start_frame > 0
+          @cur_fnum = start_frame - 1
+          @cur_t = @cur_fnum*@spf
+        end
         
       end
 
@@ -122,7 +127,7 @@ module CommunityExtensions
 
         _ignore, ratio = @pages.show_frame_at(@cur_t)
         print("EZB @cur_t: #{@cur_t} @cur_fnum: #{@cur_fnum} ratio: #{ratio} zero: #{@zeroHandled}\n")
-        Sketchup.active_model.active_view.refresh
+        Sketchup.active_model.active_view.invalidate
         GC.start
 
         if not @zeroHandled and (ratio == 0.0)
@@ -266,7 +271,7 @@ module CommunityExtensions
 
     @@warningGiven = false
 
-    @@defaults = ['C:\Users\eugeneb\Desktop\podan_renderings']
+    @@defaults = ['C:\Users\eugeneb\Desktop\podan_renderings', 0]
 
     def self.run_podan
       if not @@warningGiven
@@ -285,12 +290,12 @@ module CommunityExtensions
         return
       end
       
-      prompts = ["Podium Write Directory"]
+      prompts = ["Podium Write Directory", "Start Frame"]
       input = UI.inputbox(prompts, @@defaults, "Specify Podan Parameters")
       @@defaults = input.dup
       print(input)
       print(input[0])
-      @@podan = PodanC.new(input[0])
+      @@podan = PodanC.new(input[0], input[1])
       print(@@podan)
       @@podan.update_view()
       
